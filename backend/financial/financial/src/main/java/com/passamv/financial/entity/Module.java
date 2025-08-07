@@ -6,9 +6,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Data
 @Entity
@@ -27,13 +25,59 @@ public class Module {
     @JsonIdentityReference(alwaysAsId = true)
     private ComponentAmv componentAmv;
 
-    @ManyToMany
-    @JoinTable(name = "areaxmodule",
-            joinColumns = @JoinColumn(name = "module_id"),
-            inverseJoinColumns = @JoinColumn(name = "area_id")
-    )
-    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-    @JsonIdentityReference(alwaysAsId = true)
-    private List<Area> areaModules;
+    @OneToMany(mappedBy = "module")
+    private List<AreaModule> areaPerModules;
 
+    //@OneToMany(mappedBy = "module")
+    //private List<Content> contents;
+
+    public Module() {}
+
+    public Module(int id, String name, ComponentAmv componentAmv, List<AreaModule> areaPerModules/*, List<Content> contents*/) {
+        this.id = id;
+        this.name = name;
+        this.componentAmv = componentAmv;
+        this.areaPerModules = areaPerModules;
+        //this.contents = contents;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public ComponentAmv getComponentAmv() {
+        return componentAmv;
+    }
+
+    public void setComponentAmv(ComponentAmv componentAmv) {
+        this.componentAmv = componentAmv;
+    }
+
+    public List<AreaModule> getAreaPerModules() {
+        return areaPerModules;
+    }
+
+    public void setAreaPerModules(List<AreaModule> areaPerModules) {
+        this.areaPerModules = areaPerModules;
+    }
+
+    /*public List<Content> getContents() {
+        return contents;
+    }
+
+    public void setContents(List<Content> contents) {
+        this.contents = contents;
+    }*/
 }

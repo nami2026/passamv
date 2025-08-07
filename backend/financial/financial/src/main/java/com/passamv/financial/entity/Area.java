@@ -8,7 +8,6 @@ import lombok.Data;
 
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Data
 @Entity
@@ -21,9 +20,7 @@ public class Area {
 
     private String name;
 
-    @ManyToMany(mappedBy = "areaModules")
-    @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
-    @JsonIdentityReference(alwaysAsId = true)
-    private List<Module> areas;
+    @OneToMany(mappedBy = "area")
+    private List<AreaModule> areaPerModules;
 
 }
