@@ -19,4 +19,8 @@ public class AreaService {
         return areaRepository.findAll();
     }
 
+    public Area getById(int id) {
+        return areaRepository.findById(id).get();
+    }
+
 }

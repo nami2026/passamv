@@ -1,0 +1,60 @@
+<app-header></app-header>
+<section class="top">
+    <figure>
+        <img class="img_register" src='images/main_amv.jpg' alt="main_amv">
+    </figure>
+</section>
+<section id="bottom_register" class="bottom">
+    <div class="card" style="width: 30rem;">
+        <form class="form" [formGroup]="registerForm">
+            <h5 class="card-title">Regístrate</h5>
+            <div class="mb-3">
+                <label for="firstName" class="form-label">Primer Nombre:</label>
+                <input type="text" class="form-control" id="firstName" aria-describedby="emailHelp" formControlName="firstName">
+                @if(registerForm.controls['firstName'].touched && registerForm.controls['firstName'].errors?.required) {
+                    <div class="error-msg-field">Primer Nombre es requerido</div>
+                }
+            </div>
+            <div class="mb-3">
+                <label for="secondName" class="form-label">Segundo Nombre (opcional):</label>
+                <input type="text" class="form-control" id="secondName" formControlName="secondName">
+            </div>
+            <div class="mb-3">
+                <label for="firstLastName" class="form-label">Primer Apellido:</label>
+                <input type="text" class="form-control" id="firstLastName" formControlName="firstLastname">
+                @if(registerForm.controls['firstLastname'].touched && registerForm.controls['firstLastname'].errors?.required) {
+                    <div class="error-msg-field">Primer Apellido es requerido</div>
+                }
+            </div>
+            <div class="mb-3">
+                <label for="secondLastName" class="form-label">Segundo Apellido (opcional):</label>
+                <input type="text" class="form-control" id="secondLastName" formControlName="secondLastname">
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Correo Electrónico:</label>
+                <input type="email" class="form-control" id="email" formControlName="email">
+                @if(registerForm.controls['email'].touched && registerForm.controls['email'].errors?.required) {
+                    <div class="error-msg-field">Correo es requerido</div>
+                } @else if (registerForm.controls['email'].errors?.email) {
+                    <div class="error-msg-field">Formato de correo es requerido</div>
+                }
+            </div>
+            <div class="mb-3">
+                <label for="inputPassword" class="form-label">Contraseña:</label>
+                <input type="password" class="form-control" id="inputPassword" formControlName="password">
+                @if(registerForm.controls['password'].touched && registerForm.controls['password'].errors?.required) {
+                    <div class="error-msg-field">Contraseña es requerido</div>
+                }
+            </div>
+            <div class="mb-3">
+                <label for="inputRepeatPassword" class="form-label">Repetir Contraseña:</label>
+                <input type="password" class="form-control" id="inputRepeatPassword" formControlName="repeatPassword">
+                @if(registerForm.controls['repeatPassword'].touched && registerForm.controls['repeatPassword'].errors?.mismatch) {
+                    <div class="error-msg-field">Contraseñas no coinciden</div>
+                }
+            </div>
+            <a type="submit" class="btn btn-primary btn-register" href="/login">Regresar al login</a>
+            <button type="submit" [disabled]="this.registerForm.invalid" (click)="register()" class="btn btn-primary btn-register">Registrarse aquí</button>
+        </form>
+    </div>
+</section>

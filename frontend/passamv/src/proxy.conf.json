@@ -1,0 +1,8 @@
+{
+  "/amv": {
+    "target": "https://amvcolombia.org.co",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}

@@ -2,7 +2,6 @@ package com.passamv.financial.service;
 
 import com.passamv.financial.dto.ContentDto;
 import com.passamv.financial.dto.ModuleDto;
-import com.passamv.financial.entity.Area;
 import com.passamv.financial.entity.Content;
 import com.passamv.financial.repository.ContentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +19,12 @@ public class ContentService {
 
     public List<ContentDto> getContents() {
         List<Content> contents =  contentRepository.findAll();
-        contents = contents.stream()
+        /*contents = contents.stream()
                 .peek(c -> {
                     String encodedString = Base64.getEncoder().encodeToString(c.getFile());
                     c.setFile(Base64.getDecoder().decode(encodedString));
                 })
-                .toList();
+                .toList();*/
         return mapToDto(contents);
     }
 
@@ -40,6 +39,8 @@ public class ContentService {
             contentDto.setId(content.getId());
             contentDto.setName(content.getName());
             contentDto.setFile(content.getFile());
+            contentDto.setTitle(content.getTitle());
+            contentDto.setColorName(content.getColorName());
             contentDtos.add(contentDto);
         }
 

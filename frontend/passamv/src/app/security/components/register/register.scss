@@ -1,0 +1,48 @@
+.top, .bottom {
+    width: 100%;
+}
+
+.img_register {
+    width: 100%;
+    height: 50vh;
+}
+
+#bottom_register {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    height: fit-content;
+}
+
+.btn-register, .btn-register {
+    margin: 5px;
+    width: 95%;
+    height: fit-content;
+}
+
+.form-control {
+    width: 95%;
+    margin: 10px;
+}
+
+.form-label {
+    margin-left: 15px;
+}
+
+.card-title {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.card {
+    margin-bottom: 10px;
+}
+
+.error-msg-field {
+    color: red;
+    margin-left: 15px;
+}

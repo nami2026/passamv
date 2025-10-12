@@ -6,8 +6,6 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.Base64;
-
 @Data
 @Entity(name = "CONTENT")
 public class Content {
@@ -19,8 +17,16 @@ public class Content {
 
     private String name;
 
-    @Lob
-    private byte[] file;
+    /*@Lob
+    private byte[] file;*/
+
+    private String file;
+
+    @Column(name = "color_name")
+    private String colorName;
+
+    @Column(name = "title")
+    private String title;
 
     @ManyToOne
     @JoinColumn(name = "module_id", referencedColumnName = "module_id")
@@ -30,10 +36,12 @@ public class Content {
 
     public Content() {}
 
-    public Content(int id, String name, byte[] file, Module module) {
+    public Content(int id, String name, String file, String colorName, String title, Module module) {
         this.id = id;
         this.name = name;
         this.file = file;
+        this.colorName = colorName;
+        this.title = title;
         this.module = module;
     }
 
@@ -53,11 +61,11 @@ public class Content {
         this.name = name;
     }
 
-    public byte[] getFile() {
+    public String getFile() {
         return file;
     }
 
-    public void setFile(byte[] file) {
+    public void setFile(String file) {
         this.file = file;
     }
 
@@ -67,5 +75,21 @@ public class Content {
 
     public void setModule(Module module) {
         this.module = module;
+    }
+
+    public String getColorName() {
+        return colorName;
+    }
+
+    public void setColorName(String colorName) {
+        this.colorName = colorName;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }

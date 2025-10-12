@@ -1,18 +1,15 @@
 package com.passamv.financial.controller;
 
 import com.passamv.financial.entity.Area;
-import com.passamv.financial.entity.Module;
 import com.passamv.financial.service.AreaService;
-import com.passamv.financial.service.ModuleService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200", allowCredentials = "true")
 @RestController
-@RequestMapping("api/v1")
+@RequestMapping("/api/v1")
 public class AreaController {
 
     @Autowired
@@ -21,6 +18,11 @@ public class AreaController {
     @GetMapping("/areas")
     public List<Area> getAreas() {
         return areaService.getAreas();
+    }
+
+    @GetMapping("/area/{id}")
+    public Area getAreaById(@PathVariable("id") int id) {
+        return areaService.getById(id);
     }
 
 }

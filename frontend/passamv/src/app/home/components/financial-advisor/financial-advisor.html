@@ -1,0 +1,25 @@
+<app-navbar></app-navbar>
+<section class="top">
+    <figure>
+        <img class="img-main" src='images/main_amv.jpg' alt="main_amv">
+    </figure>
+</section>
+<section id="bottom-main" class="bottom">
+    <div class="card" style="width: 35rem; margin-top: 0px;">
+        @defer (when dataLoaded()) {
+            @for (item of contentsFinal; track item.name) {
+                <button type="button" [ngStyle]="{'background-color': item.colorName}" (click)="showFile(item.name, item.file)" class="btn btn-primary card-title">{{item.title}}</button>
+            } @empty {
+                <p>There are no items.</p>
+            }
+        } @placeholder {
+            <p>Loading contents...</p>
+        }
+    </div>
+    <div class="card" style="width: 35rem;">
+        <figure class="content-img">
+            <img class="img-stairs" src="images/passamv_stairs.jpg" alt="stairs">
+        </figure>
+        <button type="button" class="btn btn-primary card-title">Examen para asesor comercial</button>
+    </div>
+</section>

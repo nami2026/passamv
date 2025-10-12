@@ -1,3 +1,17 @@
 import { Routes } from '@angular/router';
+import { Login } from './security/components/login/login';
+import { Register } from './security/components/register/register';
+import { Main } from './security/components/main/main';
+import { AuthGuard } from './guard/auth-guard';
+import { Dashboard } from './home/components/dashboard/dashboard';
+import { Directive } from './home/components/directive/directive';
+import { FinancialAdvisor } from './home/components/financial-advisor/financial-advisor';
 
-export const routes: Routes = [];
+export const routes: Routes = [
+    { path: "login", pathMatch: 'full', component: Login},
+    { path: '', component: Main },
+    { path: "register", component: Register},
+    { path: "home", component: Dashboard, canActivate: [AuthGuard]},
+    { path: "directivo", component: Directive, canActivate: [AuthGuard]},
+    { path: "asesor-financiero", component: FinancialAdvisor, canActivate: [AuthGuard]}
+];
