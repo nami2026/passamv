@@ -1,8 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, retry, throwError } from 'rxjs';
-import { Area } from '../dto/area';
-import { ComponentAmv } from '../dto/componentamv';
+import { Item } from '../dto/item';
 
 const httpOptions = {
   headers: new HttpHeaders(
@@ -16,27 +15,18 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-
-export class ComponentAmvService {
+export class ItemService {
 
   baseUrl = "http://localhost:8080";
-  areaUrl = "/api/v1/areas"
-  componentAmvUrl = "/api/v1/componentamv"
-  
+  itemUrlGetAll = "/api/v1/items";
+
   constructor(
     private http: HttpClient
   ) { }
 
-  getAreaById(id: number): Observable<Area[]> {
-    return this.http.get<Area[]>(
-      this.baseUrl+this.areaUrl, 
-      httpOptions
-      ).pipe(retry(1), catchError(this.handleError))
-  }
-
-  getComponentsAmv(): Observable<ComponentAmv[]> {
-    return this.http.get<ComponentAmv[]>(
-      this.baseUrl+this.componentAmvUrl, 
+  getItems(): Observable<Item[]> {
+    return this.http.get<Item[]>(
+      this.baseUrl+this.itemUrlGetAll, 
       httpOptions
       ).pipe(retry(1), catchError(this.handleError))
   }
@@ -44,6 +34,5 @@ export class ComponentAmvService {
   handleError(error: any) {
     return throwError(() => error);
   }
-
   
 }

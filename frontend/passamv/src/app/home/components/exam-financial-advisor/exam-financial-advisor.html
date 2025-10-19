@@ -1,0 +1,47 @@
+<app-navbar style="position: fixed; width: 100%;
+    z-index: 100; top: 0;"></app-navbar>
+<section id="bottom-main" class="bottom">
+    <div class="card" style="width: 50rem;">
+        <nav aria-label="...">
+            <ul class="pagination">
+                <li class="page-item"><button (click)="getPrevious()" class="page-link">Previous</button></li>
+                @defer (when dataLoaded()) {
+                    @for (item of modules; track $index) {
+                        <li id="current-page-item" class="page-item">
+                            <button id="active-page-link" class="page-link" [ngClass]="{'active': $index === this.defaultPosition}" (click)="selectItems($index)">{{$index + 1}}</button>
+                        </li>
+                    }
+                }
+                <li class="page-item"><button class="page-link" (click)="getNext()">Next</button></li>
+            </ul>
+        </nav>
+        @defer (when dataLoaded()) {
+            @for (data of examsPart; track data?.type) {
+                <h1>{{data?.type}}</h1>
+                @for (item of data?.items; track item?.module) {
+                    <strong class="question"> {{item?.question}} </strong>
+                    @for (option of item?.options; track $index) {
+                        <div>
+                            <label class="label-option" for="option1"> 
+                                <input type="radio" 
+                                    [name]="item.id.toString()" 
+                                    [value]="option.id"
+                                    [checked]="option.isSelected"
+                                    (change)="onItemChange($event, option.id, item.id)">
+                                {{option?.text}} 
+                            </label><br>
+                        </div>
+                    } @empty {
+                        <p>There are no items.</p>
+                    }
+                } @empty {
+                    <p>There are no items.</p>
+                }
+            } @empty {
+                <p>There are no items.</p>
+            }
+        } @placeholder {
+            <p>Loading questions...</p>
+        }
+    </div>
+</section>

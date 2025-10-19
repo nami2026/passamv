@@ -5,7 +5,7 @@ import { Navbar } from '../navbar/navbar';
 import { AreaService } from '../../services/area-service';
 import { Area } from '../../dto/area';
 import { CommonModule } from '@angular/common';
-import { FileService } from '../../services/file-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-financial-advisor',
@@ -24,7 +24,7 @@ export class FinancialAdvisor implements OnInit {
   constructor(
       private materialService: MaterialStudyService,
       private areaService: AreaService,
-      private fileService: FileService
+      private router: Router
   ) {
     this.getArea();
   }
@@ -48,29 +48,12 @@ export class FinancialAdvisor implements OnInit {
       })
   }
 
-  /*downloadFile(name: string, file: Blob) {
-    const link = document.createElement('a');
-     link.href = `data:${"application/pdf"};base64,${file}`;
-     link.download = name;
-     document.body.appendChild(link); // Append to body temporarily
-     link.click();
-     document.body.removeChild(link); // Remove after click
-  }*/
-
   showFile(name: string, file: string) {
-    /*const link = document.createElement('a');
-    document.body.appendChild(link);
-    link.href = file;
-    link.download = name;
-    link.click();
-    document.body.removeChild(link);*/
-
     window.open(file, '_blank');
+  }
 
-    /* this.fileService.downloadFile(file, name).subscribe(blob => {
-      this.fileService.saveFile(blob, name);
-    }); */
-
+  makeExam() {
+    this.router.navigate(["/examen-asesor-financiero"])
   }
 
 }

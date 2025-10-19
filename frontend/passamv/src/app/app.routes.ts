@@ -6,6 +6,7 @@ import { AuthGuard } from './guard/auth-guard';
 import { Dashboard } from './home/components/dashboard/dashboard';
 import { Directive } from './home/components/directive/directive';
 import { FinancialAdvisor } from './home/components/financial-advisor/financial-advisor';
+import { ExamFinancialAdvisor } from './home/components/exam-financial-advisor/exam-financial-advisor';
 
 export const routes: Routes = [
     { path: "login", pathMatch: 'full', component: Login},
@@ -13,5 +14,6 @@ export const routes: Routes = [
     { path: "register", component: Register},
     { path: "home", component: Dashboard, canActivate: [AuthGuard]},
     { path: "directivo", component: Directive, canActivate: [AuthGuard]},
-    { path: "asesor-financiero", component: FinancialAdvisor, canActivate: [AuthGuard]}
+    { path: "asesor-financiero", component: FinancialAdvisor, canActivate: [AuthGuard]},
+    { path: "examen-asesor-financiero", component: ExamFinancialAdvisor, canActivate: [AuthGuard]}
 ];
