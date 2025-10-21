@@ -9,7 +9,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-@Entity
+@Entity(name = "MODULE")
 public class Module {
 
     @Id

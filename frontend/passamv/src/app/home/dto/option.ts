@@ -2,7 +2,7 @@ export class Option {
     
     public id: number;
     public text: string;
-    public rigthAnswer: boolean;
+    public rightAnswer: boolean;
     public item: number;
     public isSelected: boolean = false;
 
@@ -22,12 +22,12 @@ export class Option {
         this.text = text;
     }
 
-    public getRigthAnswer() {
-        return this.rigthAnswer;
+    public getRightAnswer() {
+        return this.rightAnswer;
     }
 
-    public setRigthAnswer(rigthAnswer: boolean) {
-        this.rigthAnswer = rigthAnswer;
+    public setRightAnswer(rightAnswer: boolean) {
+        this.rightAnswer = rightAnswer;
     }
 
     public getItem() {

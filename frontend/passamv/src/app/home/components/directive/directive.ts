@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 import { Navbar } from '../navbar/navbar';
 import { AreaService } from '../../services/area-service';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-directive',
@@ -25,7 +26,8 @@ export class Directive implements OnInit {
   constructor(
     private materialService: MaterialStudyService,
     //private dataService: DataService,
-    private areaService: AreaService
+    private areaService: AreaService,
+    private router: Router
   ) {
     this.getArea();
   }
@@ -82,6 +84,10 @@ export class Directive implements OnInit {
 
   showFile(name: string, file: string) {
     window.open(file, '_blank');
+  }
+
+  makeExam() {
+    this.router.navigate(["/examen-directivo"])
   }
 
 }

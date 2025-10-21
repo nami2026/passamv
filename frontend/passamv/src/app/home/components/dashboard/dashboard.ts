@@ -36,7 +36,7 @@ export class Dashboard implements OnInit {
   }
   
   sendAreas(areaId: number) {
-    const area = this.areas.filter((area) => area.id === areaId)[0];
+    const area = this.areas?.filter((area) => area.id === areaId)[0];
     this.dataService.changeMessageArea(area);
     areaId === this.idAreaDirective ? this.router.navigate(["/directivo"]) : this.router.navigate(["/asesor-financiero"]);
   }

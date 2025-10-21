@@ -11,8 +11,7 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
   const authService = inject(Auth);
   return next(req).pipe(
     catchError((err) => {
-      console.log(err);
-      if (err.status === 401) {
+      if (err.status === 403) {
         Swal.fire({
             position: "top-end",
             icon: "error",

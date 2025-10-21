@@ -45,8 +45,9 @@ export class Login implements OnInit {
       this.requestLogin.setEmail(this.loginForm.get('email')?.value);
       this.requestLogin.setPassword(this.loginForm.get('password')?.value);
 
-      this.authService.login(this.requestLogin).subscribe((data: ResponseData) => {
+      this.authService.login(this.requestLogin).subscribe(async (data: ResponseData) => {
         if (data.responseCode == '200') {
+          const user = await this.authService.getUser(this.loginForm.get('email')?.value);
           this.loginForm.reset();
           Swal.fire({
             position: "top-end",
@@ -55,6 +56,8 @@ export class Login implements OnInit {
             showConfirmButton: false,
             timer: 5000
           });
+          sessionStorage.setItem("idUser", user.id.toString())
+          localStorage.setItem("isLoggedIn", "true");
           localStorage.setItem("isLoggedIn", "true");
           localStorage.setItem("userName", this.requestLogin.getEmail());
           this.router.navigate(["/home"]);
@@ -62,7 +65,7 @@ export class Login implements OnInit {
           Swal.fire({
             position: "top-end",
             icon: "error",
-            title: "Ha ocurrido un error autenticando el usuario",
+            title: "Ha ocurrido un error en la autenticación, usuario o contraseña incorrectos",
             showConfirmButton: false,
             timer: 5000
           });

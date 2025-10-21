@@ -7,9 +7,9 @@ import lombok.NoArgsConstructor;
 
 import java.util.List;
 
-@Entity
 @Data
 @NoArgsConstructor
+@Entity(name = "ROLE")
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

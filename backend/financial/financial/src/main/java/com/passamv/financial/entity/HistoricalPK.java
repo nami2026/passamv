@@ -15,4 +15,11 @@ public class HistoricalPK {
     @Column(name = "area_id")
     private Integer areaId;
 
+    public HistoricalPK() {}
+
+    public HistoricalPK(Integer areaId, Integer examId, Integer userId) {
+        this.areaId = areaId;
+        this.examId = examId;
+        this.userId = userId;
+    }
 }

@@ -1,10 +1,11 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { RequestRegistration } from '../../dto/request-registration';
-import { catchError, Observable, retry, throwError } from 'rxjs';
+import { catchError, lastValueFrom, Observable, retry, throwError } from 'rxjs';
 import { ResponseData } from '../../dto/response-data';
 import { RequestLogin } from '../../dto/request-login';
 import { Router } from '@angular/router';
+import { User } from '../../../home/dto/user';
 
 const httpOptions = {
   headers: new HttpHeaders(
@@ -23,6 +24,8 @@ export class Auth {
   baseUrl = "http://localhost:8080";
   registrationUrl = "/auth/signup"
   loginUrl = "/auth/signin"
+  logoutUrl = "/auth/signout"
+  userUrl = "/api/v1/user/"
   
   constructor(
     private http: HttpClient,
@@ -48,11 +51,19 @@ export class Auth {
       )          
   }
 
-  logout() {
-    sessionStorage.clear()
-    localStorage.removeItem("isLoggedIn");
-    localStorage.removeItem("userName");
-    this.router.navigate(["/login"]);
+  async getUser(email: string): Promise<User> {
+    const userObservable = this.http.get<User>(this.baseUrl+this.userUrl+email, httpOptions);
+    const data = await lastValueFrom(userObservable);
+    return data;
+  }
+
+  logout(): Observable<any> {
+    return this.http.post<any>(
+      this.baseUrl+this.logoutUrl, httpOptions
+    ).pipe(
+          retry(1),
+          catchError(this.handleError)
+      )
   }
 
   handleError(error: any) {

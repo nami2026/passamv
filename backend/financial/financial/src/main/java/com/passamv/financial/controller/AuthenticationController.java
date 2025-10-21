@@ -1,11 +1,9 @@
 package com.passamv.financial.controller;
 
 import com.passamv.financial.config.JwtAuthenticationFilter;
-import com.passamv.financial.dto.LoginRequest;
-import com.passamv.financial.dto.LoginResponse;
-import com.passamv.financial.dto.SignupRequest;
-import com.passamv.financial.dto.SignupResponse;
+import com.passamv.financial.dto.*;
 import com.passamv.financial.service.AuthenticationService;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
@@ -65,6 +63,6 @@ public class AuthenticationController {
     @PostMapping("/signout")
     public ResponseEntity<?> logoutUser(HttpServletResponse response) {
         authenticationService.logoutUser(response);
-        return new ResponseEntity("You've been signed out!", HttpStatus.OK);
+        return new ResponseEntity(LogoutResponse.builder().message("You have been signed out!").build(), HttpStatus.OK);
     }
 }

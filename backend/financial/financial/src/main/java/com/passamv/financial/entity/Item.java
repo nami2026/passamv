@@ -15,7 +15,7 @@ public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "item_id")
-    private Long id;
+    private Integer id;
 
     private String question;
 
@@ -30,17 +30,17 @@ public class Item {
 
     public Item() {}
 
-    public Item(Long id, String question, Module module) {
+    public Item(Integer id, String question, Module module) {
         this.id = id;
         this.question = question;
         this.module = module;
     }
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

@@ -14,7 +14,7 @@ public class Historical {
     private HistoricalPK id;
 
     @Column(name = "score")
-    private String score;
+    private Integer score;
 
     @Column(name = "start_date")
     private Date startDate;
@@ -23,7 +23,7 @@ public class Historical {
     private Date endDate;
 
     @Column(name = "total_score")
-    private Integer totalScore;
+    private Double totalScore;
 
     @Column(name = "status")
     private String status;
@@ -57,7 +57,7 @@ public class Historical {
 
     public Historical() {}
 
-    public Historical(HistoricalPK id, String score, Date startDate, Date endDate, Integer totalScore, String status, String wrongAnswersId, String rightAnswersId, Area area, User user, Exam exam) {
+    public Historical(HistoricalPK id, Integer score, Date startDate, Date endDate, Double totalScore, String status, String wrongAnswersId, String rightAnswersId, Area area, User user, Exam exam) {
         this.id = id;
         this.score = score;
         this.startDate = startDate;
@@ -79,11 +79,11 @@ public class Historical {
         this.id = id;
     }
 
-    public String getScore() {
+    public Integer getScore() {
         return score;
     }
 
-    public void setScore(String score) {
+    public void setScore(Integer score) {
         this.score = score;
     }
 
@@ -103,11 +103,11 @@ public class Historical {
         this.endDate = endDate;
     }
 
-    public Integer getTotalScore() {
+    public Double getTotalScore() {
         return totalScore;
     }
 
-    public void setTotalScore(Integer totalScore) {
+    public void setTotalScore(Double totalScore) {
         this.totalScore = totalScore;
     }
 

@@ -18,8 +18,8 @@
         @defer (when dataLoaded()) {
             @for (data of examsPart; track data?.type) {
                 <h1 class="tittle">{{data?.type}}</h1>
-                @for (item of data?.items; track $index) {
-                    <strong class="question"> {{$index + 1}}. {{item?.question}} </strong>
+                @for (item of data?.items; track item?.module) {
+                    <strong class="question"> {{item?.question}} </strong>
                     @for (option of item?.options; track $index) {
                         <div>
                             <label class="label-option" for="option1"> 
@@ -27,7 +27,7 @@
                                     [name]="item.id.toString()" 
                                     [value]="option.id"
                                     [checked]="option.isSelected"
-                                    (change)="onItemChange(option.id, item.id)">
+                                    (change)="onItemChange($event, option.id, item.id)">
                                 {{option?.text}} 
                             </label><br>
                         </div>
@@ -43,7 +43,6 @@
         } @placeholder {
             <p>Loading questions...</p>
         }
-        
         <section class="btn-section">
             <button type="button" class="btn btn-primary card-title" (click)="getPrevious()">Anterior</button>
             @if (this.defaultPosition < modules.length-1) {

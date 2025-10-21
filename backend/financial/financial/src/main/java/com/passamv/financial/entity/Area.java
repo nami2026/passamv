@@ -5,7 +5,7 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-@Entity
+@Entity(name = "AREA")
 public class Area {
 
     @Id
