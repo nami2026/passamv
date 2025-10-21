@@ -14,6 +14,7 @@ import { ExamService } from '../../services/exam';
 import { HistoricalService } from '../../services/historical-service';
 import { Historical } from '../../dto/historical';
 import { ExamItem } from '../../dto/exam-item';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-exam-directive',
@@ -40,6 +41,7 @@ export class ExamDirective implements OnInit {
   rightAnswersIdSelected: number[] = [];
   wrongAnswersIdSelected: number[] = [];
   examItem: ExamItem;
+  activeButtonFinish: boolean = false;
 
   constructor(
     private itemService: ItemService,
@@ -93,6 +95,15 @@ export class ExamDirective implements OnInit {
       })
 
       this.examsPart = [this.exams[this.defaultPosition]]
+      
+      this.itemsFinal.map(item => {
+        item.options.map(opt => {
+          if(opt.rightAnswer === true) {
+            this.successAnswersId.push(opt.id)
+          }
+        })
+      })
+
       this.dataLoaded.set(true);
     })
   }
@@ -140,6 +151,9 @@ export class ExamDirective implements OnInit {
     this.answersIdSelected.push(selectedId[0])
     this.answersIdSelected = this.answersIdSelected.filter(item => !noSelectedIds.includes(item));
 
+    this.rightAnswersIdSelected = this.successAnswersId.filter(item => this.answersIdSelected.includes(item));
+    this.wrongAnswersIdSelected = this.successAnswersId.filter(item => !this.answersIdSelected.includes(item));
+
     this.examsPart.forEach(exam => exam.items.forEach((itemExam: Item) => {
       if (itemExam.id === itemId)
         itemExam = item[0]
@@ -147,6 +161,7 @@ export class ExamDirective implements OnInit {
   }
 
   async sendHistorical() {
+    this.activeButtonFinish = true;
     const historical: Historical = {
       ids: {
         userId: Number(sessionStorage.getItem("idUser")),
@@ -162,6 +177,16 @@ export class ExamDirective implements OnInit {
       totalScore: (5/this.successAnswersId.length) * this.rightAnswersIdSelected.length
     }
     await this.historicalService.saveHistorical(historical);
+    Swal.fire({
+      title: "Felicidades, ha finalizado el examen",
+      text: "Tu nota ha sido de " + ((Math.floor(((5/this.successAnswersId.length) * this.rightAnswersIdSelected.length)*1000)/1000).toFixed(2)).toString() + "/" + 5,
+      icon: "success",
+      footer: '<a href="/directivo">Regresar al material de estudio</a> <a href="/examen-directivo">Repetir el examen</a>'
+    });
+  }
+
+  finishExam() {
+    console.log("workssss")
   }
 
   subtractHours(date: Date, hours: number) {

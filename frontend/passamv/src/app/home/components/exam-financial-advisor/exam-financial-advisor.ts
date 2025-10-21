@@ -14,6 +14,7 @@ import { ExamService } from '../../services/exam';
 import { ExamItem } from '../../dto/exam-item';
 import { HistoricalService } from '../../services/historical-service';
 import { Historical } from '../../dto/historical';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-exam-financial-advisor',
@@ -39,6 +40,7 @@ export class ExamFinancialAdvisor implements OnInit {
   successAnswersId: number[] = [];
   answersIdSelected: number[] = [];
   examItem: ExamItem;
+  activeButtonFinish: boolean = false;
 
   rightAnswersIdSelected: number[] = [];
   wrongAnswersIdSelected: number[] = [];
@@ -122,6 +124,7 @@ export class ExamFinancialAdvisor implements OnInit {
   }
 
   async sendHistorical() {
+    this.activeButtonFinish = true;
     const historical: Historical = {
       ids: {
         userId: Number(sessionStorage.getItem("idUser")),
@@ -137,6 +140,13 @@ export class ExamFinancialAdvisor implements OnInit {
       totalScore: (5/this.successAnswersId.length) * this.rightAnswersIdSelected.length
     }
     await this.historicalService.saveHistorical(historical);
+    Swal.fire({
+      title: "Felicidades, ha finalizado el examen",
+      text: "Tu nota ha sido de " + ((Math.floor(((5/this.successAnswersId.length) * this.rightAnswersIdSelected.length)*1000)/1000).toFixed(2)).toString() + "/" + 5,
+      icon: "success",
+      footer: '<a href="/asesor-financiero">Regresar al material de estudio</a> <a href="/examen-asesor-financiero">Repetir el examen</a>'
+    });
+
   }
 
   subtractHours(date: Date, hours: number) {
@@ -170,10 +180,6 @@ export class ExamFinancialAdvisor implements OnInit {
 
     this.rightAnswersIdSelected = this.successAnswersId.filter(item => this.answersIdSelected.includes(item));
     this.wrongAnswersIdSelected = this.successAnswersId.filter(item => !this.answersIdSelected.includes(item));
-
-    console.log("sucessss", this.successAnswersId)
-    console.log("right", this.rightAnswersIdSelected)
-    console.log("wrong", this.wrongAnswersIdSelected)
 
     this.examsPart.forEach(exam => exam.items.forEach((itemExam:Item) => {
       if(itemExam.id === itemId)

@@ -2,6 +2,13 @@
     z-index: 100; top: 0;"></app-navbar>
 <section id="bottom-main" class="bottom">
     <div class="card" style="width: 60rem;">
+        <strong>Notas importantes: </strong> 
+        <strong>1. Al refrescar la página, retroceder a la pantalla anterior o navegar a otra pantalla implicará reestablecer el progeso del examen </strong> 
+        <strong>2. Puedes finalizar el examen incluso si no respondiste ninguna pregunta </strong> 
+        <strong>3. Al finalizar el examen se te mostrará en cada pregunta la opción correcta y las incorrectas </strong> 
+        <br>
+        <strong>Muchos éxitos :) </strong> 
+        <br>
         <nav aria-label="..." class="nav-pagination">
             <ul class="pagination">
                 <li class="page-item"><button (click)="getPrevious()" class="page-link">Previous</button></li>
@@ -15,6 +22,7 @@
                 <li class="page-item"><button class="page-link" (click)="getNext()">Next</button></li>
             </ul>
         </nav>
+
         @defer (when dataLoaded()) {
             @for (data of examsPart; track data?.type) {
                 <h1 class="tittle">{{data?.type}}</h1>
@@ -28,7 +36,8 @@
                                     [value]="option.id"
                                     [checked]="option.isSelected"
                                     (change)="onItemChange(option.id, item.id)">
-                                {{option?.text}} 
+                                {{option?.text}} @if(this.activeButtonFinish === true && successAnswersId.includes(option.id)) {&#10004;} 
+                                                 @else if(this.activeButtonFinish === true) {&#10008;}
                             </label><br>
                         </div>
                     } @empty {
@@ -49,7 +58,11 @@
             @if (this.defaultPosition < modules.length-1) {
                 <button type="button" class="btn btn-primary card-title" (click)="getNext()">Siguiente</button>
             } @else {
-                <button type="button" class="btn btn-primary card-title" (click)="sendHistorical()">Finalizar</button>
+                @defer (when dataLoaded()) {
+                    <button type="button" class="btn btn-primary card-title" (click)="sendHistorical()">Finalizar</button>
+                } @placeholder {
+                    <p>Loading option...</p>
+                }
             }
         </section>
     </div>
