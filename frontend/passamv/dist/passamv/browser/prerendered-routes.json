@@ -1,0 +1,12 @@
+{
+  "routes": {
+    "/": {},
+    "/asesor-financiero": {},
+    "/directivo": {},
+    "/examen-asesor-financiero": {},
+    "/examen-directivo": {},
+    "/home": {},
+    "/login": {},
+    "/register": {}
+  }
+}
