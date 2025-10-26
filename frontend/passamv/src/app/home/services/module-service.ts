@@ -18,7 +18,7 @@ const httpOptions = {
 })
 export class ModuleService {
   
-  baseUrl = "http://localhost:8080";
+  baseUrl = "https://back-passamv.onrender.com";
   moduleUrlGetAll = "/api/v1/modules";
 
   constructor(

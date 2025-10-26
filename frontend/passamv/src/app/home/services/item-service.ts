@@ -17,7 +17,7 @@ const httpOptions = {
 })
 export class ItemService {
 
-  baseUrl = "http://localhost:8080";
+  baseUrl = "https://back-passamv.onrender.com";
   itemUrlGetAll = "/api/v1/items";
 
   constructor(

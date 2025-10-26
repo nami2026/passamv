@@ -17,7 +17,7 @@ const httpOptions = {
 })
 export class ExamService {
 
-  baseUrl = "http://localhost:8080";
+  baseUrl = "https://back-passamv.onrender.com";
   saveExamUrl = "/api/v1/save-exam";
 
   constructor(

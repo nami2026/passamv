@@ -17,7 +17,7 @@ const httpOptions = {
 })
 export class AreaService {
 
-  baseUrl = "http://localhost:8080";
+  baseUrl = "https://back-passamv.onrender.com";
   areaUrlGetAll = "/api/v1/areas"
   areaUrlGet = "/api/v1/area/"
   

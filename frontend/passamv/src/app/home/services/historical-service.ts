@@ -17,7 +17,7 @@ const httpOptions = {
 })
 export class HistoricalService {
   
-  baseUrl = "http://localhost:8080";
+  baseUrl = "https://back-passamv.onrender.com";
   saveHistoricalUrl = "/api/v1/save-historical";
 
   constructor(

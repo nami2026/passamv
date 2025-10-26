@@ -17,7 +17,7 @@ const httpOptions = {
 })
 export class MaterialStudyService {
   
-  baseUrl = "http://localhost:8080";
+  baseUrl = "https://back-passamv.onrender.com";
   areaUrlGetAll = "/api/v1/contents"
   
   constructor(

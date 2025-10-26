@@ -21,7 +21,7 @@ const httpOptions = {
 })
 export class Auth {
 
-  baseUrl = "http://localhost:8080";
+  baseUrl = "https://back-passamv.onrender.com";
   registrationUrl = "/auth/signup"
   loginUrl = "/auth/signin"
   logoutUrl = "/auth/signout"

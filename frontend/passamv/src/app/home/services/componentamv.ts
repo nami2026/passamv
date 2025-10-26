@@ -19,7 +19,7 @@ const httpOptions = {
 
 export class ComponentAmvService {
 
-  baseUrl = "http://localhost:8080";
+  baseUrl = "https://back-passamv.onrender.com";
   areaUrl = "/api/v1/areas"
   componentAmvUrl = "/api/v1/componentamv"
   
