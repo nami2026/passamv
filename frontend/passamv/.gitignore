@@ -43,3 +43,4 @@ Thumbs.db
 .netlify
 .nx
 package-lock.json
+.vscode

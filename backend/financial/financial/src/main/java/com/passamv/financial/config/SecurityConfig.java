@@ -48,7 +48,7 @@ public class SecurityConfig {
                 .cors(httpSecurityCorsConfigurer -> httpSecurityCorsConfigurer.configurationSource(
                         request -> {
                             CorsConfiguration configuration = new CorsConfiguration();
-                            configuration.setAllowedOrigins(List.of("http://localhost:4200"));
+                            configuration.setAllowedOrigins(List.of("https://passamv.netlify.app"));
                             configuration.setAllowedMethods(List.of("GET", "POST"));
                             configuration.setAllowCredentials(true);
                             configuration.addExposedHeader("message");
