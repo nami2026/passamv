@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --configuration production && cp src/_redirects dist/passamv/",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:passamv": "node dist/passamv/server/server.mjs"
@@ -26,14 +26,11 @@
     "@angular/core": "^20.1.0",
     "@angular/forms": "^20.1.0",
     "@angular/platform-browser": "^20.1.0",
-    "@angular/platform-server": "^20.1.0",
     "@angular/router": "^20.1.0",
-    "@angular/ssr": "^20.1.5",
     "@netlify/angular-runtime": "^3.0.0",
     "@nrwl/angular": "^19.8.4",
     "@popperjs/core": "^2.11.8",
     "bootstrap": "^5.3.7",
-    "express": "^5.1.0",
     "file-saver": "^2.0.5",
     "rxjs": "~7.8.0",
     "sweetalert2": "^11.23.0",
