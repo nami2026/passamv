@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --configuration production && cp src/_redirects dist/passamv/",
+    "build": "ng build --configuration production && copy src\\_redirects dist\\passamv\\browser\\",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:passamv": "node dist/passamv/server/server.mjs"
@@ -27,7 +27,6 @@
     "@angular/forms": "^20.1.0",
     "@angular/platform-browser": "^20.1.0",
     "@angular/router": "^20.1.0",
-    "@netlify/angular-runtime": "^3.0.0",
     "@nrwl/angular": "^19.8.4",
     "@popperjs/core": "^2.11.8",
     "bootstrap": "^5.3.7",
