@@ -23,9 +23,9 @@
                         <tr>
                             <th scope="row">{{$index}}</th>
                             <td>{{data.area === 1 ? "Asesor Financiero": "Directivo"}}</td>
-                            <td>{{data.totalScore.toString().replace("T", " ").replace(".000+00:00", "")}}</td>
+                            <td>{{data.totalScore}}</td>
                             <td>{{data.startDate.toString().replace("T", " ").replace(".000+00:00", "")}}</td>
-                            <td>{{data.endDate}}</td>
+                            <td>{{data.endDate.toString().replace("T", " ").replace(".000+00:00", "")}}</td>
                             <td>{{data.status === "PENDING" ? "NO FINALIZADO": "FINALIZADO"}}</td>
                             <td>{{data.rightAnswersId.split(",").length}}</td>
                             <td>{{data.wrongAnswersId.split(",").length}}</td>
