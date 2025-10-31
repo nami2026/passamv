@@ -27,8 +27,8 @@
                             <td>{{data.startDate.toString().replace("T", " ").replace(".000+00:00", "")}}</td>
                             <td>{{data.endDate.toString().replace("T", " ").replace(".000+00:00", "")}}</td>
                             <td>{{data.status === "PENDING" ? "NO FINALIZADO": "FINALIZADO"}}</td>
-                            <td>{{data.rightAnswersId.split(",").length}}</td>
-                            <td>{{data.wrongAnswersId.split(",").length}}</td>
+                            <td>{{data.rightAnswersId === "" ? 0 : data.rightAnswersId.split(",").length}}</td>
+                            <td>{{data.wrongAnswersId === "" ? 0 : data.wrongAnswersId.split(",").length}}</td>
                         </tr>
                     } @empty {
                         <h1>No has realizado ningún examen.</h1>
