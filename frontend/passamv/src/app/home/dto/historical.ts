@@ -10,5 +10,8 @@ export class Historical {
     status: string;
     wrongAnswersId: string;
     rightAnswersId: string;
+    area?: number;
+    user?: number;
+    exam?: number;
 
 }

@@ -42,3 +42,11 @@
     margin-bottom: 20px;
     color: antiquewhite;
 }
+
+.overlay-text {
+  position: absolute;
+  top: 33%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+}

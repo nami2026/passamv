@@ -56,4 +56,8 @@ export class FinancialAdvisor implements OnInit {
     this.router.navigate(["/examen-asesor-financiero"])
   }
 
+  getHistorical() {
+    this.router.navigate(["/historico"])
+  }
+
 }

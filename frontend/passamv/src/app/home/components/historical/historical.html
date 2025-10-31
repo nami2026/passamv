@@ -1,0 +1,38 @@
+<app-navbar></app-navbar>
+<section id="bottom-main" class="bottom">
+    <div class="card" style="width: 80rem;">
+        <table class="table table-bordered border border-3">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Calificación</th>
+                    <th scope="col">Fecha inicio</th>
+                    <th scope="col">Fecha fin</th>
+                    <th scope="col">Estado</th>
+                    <th scope="col"># preguntas respondidas correctamente</th>
+                    <th scope="col"># preguntas no respondidas o respondidas incorrectamente</th>
+                </tr>
+            </thead>
+            <tbody>
+                @defer (when dataLoaded()) {
+                    @for (data of historical; track $index) { 
+                        <tr>
+                            <th scope="row">{{$index}}</th>
+                            <td>{{data.score}}</td>
+                            <td>{{data.startDate}}</td>
+                            <td>{{data.endDate}}</td>
+                            <td>{{data.status === "PENDING" ? "NO FINALIZADO": "FINALIZADO"}}</td>
+                            <td>{{data.rightAnswersId.split(",").length}}</td>
+                            <td>{{data.wrongAnswersId.split(",").length}}</td>
+                        </tr>
+                    } @empty {
+                        <h1>No has realizado ningún examen.</h1>
+                    }
+                    
+                } @placeholder {
+                    <p>Loading historical...</p>
+                }
+            </tbody>
+        </table>
+    </div>
+</section>

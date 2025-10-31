@@ -4,7 +4,7 @@
 
 .img-main {
     width: 100%;
-    height: 30vh;
+    height: 40vh;
 }
 
 #bottom-main {
@@ -42,4 +42,12 @@
 .card-title {
     margin-bottom: 20px;
     color: antiquewhite;
+}
+
+.overlay-text {
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
 }

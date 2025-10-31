@@ -90,4 +90,8 @@ export class Directive implements OnInit {
     this.router.navigate(["/examen-directivo"])
   }
 
+  getHistorical() {
+    this.router.navigate(["/historico"])
+  }
+
 }
