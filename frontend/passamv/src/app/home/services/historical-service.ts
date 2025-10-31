@@ -32,7 +32,7 @@ export class HistoricalService {
   }
 
   async getByUserId(userId: number): Promise<Historical[]> {
-    const dataObservable = this.http.get<Historical[]>(this.baseUrl+this.saveHistoricalUrl+userId, httpOptions);
+    const dataObservable = this.http.get<Historical[]>(this.baseUrl+this.getHistoricalUrl+userId, httpOptions);
     const data = await lastValueFrom(dataObservable);
     return data;
   }

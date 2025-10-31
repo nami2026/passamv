@@ -1,10 +1,14 @@
 <app-navbar></app-navbar>
+<section>
+    <h1>Bienvenido al histórico de tus exámenes realizados, acá encontrarás los examenes como asesor financiero o como directivo</h1>
+</section>
 <section id="bottom-main" class="bottom">
     <div class="card" style="width: 80rem;">
         <table class="table table-bordered border border-3">
             <thead>
                 <tr>
                     <th scope="col">#</th>
+                    <th scope="col">Cargo</th>
                     <th scope="col">Calificación</th>
                     <th scope="col">Fecha inicio</th>
                     <th scope="col">Fecha fin</th>
@@ -18,8 +22,9 @@
                     @for (data of historical; track $index) { 
                         <tr>
                             <th scope="row">{{$index}}</th>
-                            <td>{{data.score}}</td>
-                            <td>{{data.startDate}}</td>
+                            <td>{{data.area === 1 ? "Asesor Financiero": "Directivo"}}</td>
+                            <td>{{data.totalScore.toString().replace("T", " ").replace(".000+00:00", "")}}</td>
+                            <td>{{data.startDate.toString().replace("T", " ").replace(".000+00:00", "")}}</td>
                             <td>{{data.endDate}}</td>
                             <td>{{data.status === "PENDING" ? "NO FINALIZADO": "FINALIZADO"}}</td>
                             <td>{{data.rightAnswersId.split(",").length}}</td>
