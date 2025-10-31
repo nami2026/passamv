@@ -22,7 +22,11 @@ export class HistoricalComponent implements OnInit {
   async ngOnInit() {
     const userId = Number(sessionStorage.getItem("idUser"));
     this.historical = await this.historicalService.getByUserId(userId);
-    this.historical = [...this.historical].sort((a, b) => b.startDate.getTime() - a.startDate.getTime());
+    this.historical = [...this.historical].sort((a, b) => {
+      const dateA = new Date(a.startDate);
+      const dateB = new Date(b.startDate);
+      return dateB.getTime() - dateA.getTime();
+    });
 
     this.dataLoaded.set(true);
   }
